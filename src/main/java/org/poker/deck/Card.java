@@ -9,9 +9,22 @@ import lombok.Getter;
  */
 @Getter
 @AllArgsConstructor
-public class Card {
+public class Card implements Comparable<Card> {
     private final Rank rank;
     private final Suit suit;
+
+    /**
+     * @param o the object to be compared.
+     * @return if equal or not
+     */
+    @Override
+    public int compareTo(Card o) {
+        if (this.rank != o.rank) {
+            return o.rank.ordinal() - this.rank.ordinal();
+        } else {
+            return this.suit.ordinal() - o.suit.ordinal();
+        }
+    }
 
     /**
      * @return Display the card

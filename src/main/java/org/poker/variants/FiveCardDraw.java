@@ -37,6 +37,7 @@ public class FiveCardDraw implements PokerVariant {
      */
     @Override
     public String evaluate(List<Card> cards) {
+        Collections.sort(cards);
         HandRanking handRanking = rankHand(cards);
         orderCards(cards, handRanking);
         return handRanking.toString();
@@ -209,7 +210,7 @@ public class FiveCardDraw implements PokerVariant {
         if (cards.size() != HAND_SIZE) {
             return false;
         }
-        Suit suit = cards.get(0).getSuit();
+        Suit suit = cards.getFirst().getSuit();
         for (int i = 1; i < cards.size(); i++) {
             if (cards.get(i).getSuit() != suit) {
                 return false;

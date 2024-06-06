@@ -182,4 +182,34 @@ class FiveCardDrawTest {
 
         assertEquals(HandRanking.ROYAL_FLUSH.toString(), evaluation);
     }
+
+    @Test
+    public void testUnSortedPair() {
+        FiveCardDraw fiveCardDraw = new FiveCardDraw();
+        List<Card> hand = new ArrayList<>();
+        hand.add(new Card(Rank.ACE, Suit.DIAMONDS));
+        hand.add(new Card(Rank.TEN, Suit.HEARTS));
+        hand.add(new Card(Rank.KING, Suit.SPADES));
+        hand.add(new Card(Rank.TEN, Suit.CLUBS));
+        hand.add(new Card(Rank.FIVE, Suit.CLUBS));
+
+        String evaluation = fiveCardDraw.evaluate(hand);
+
+        assertEquals(HandRanking.PAIR.toString(), evaluation);
+    }
+
+    @Test
+    public void testUnSortedThreeOfAKind() {
+        FiveCardDraw fiveCardDraw = new FiveCardDraw();
+        List<Card> hand = new ArrayList<>();
+        hand.add(new Card(Rank.TEN, Suit.DIAMONDS));
+        hand.add(new Card(Rank.ACE, Suit.HEARTS));
+        hand.add(new Card(Rank.TEN, Suit.SPADES));
+        hand.add(new Card(Rank.KING, Suit.CLUBS));
+        hand.add(new Card(Rank.TEN, Suit.CLUBS));
+
+        String evaluation = fiveCardDraw.evaluate(hand);
+
+        assertEquals(HandRanking.THREE_OF_A_KIND.toString(), evaluation);
+    }
 }
